@@ -152,22 +152,21 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile overlay for mobile menu */
+      {/* Mobile overlay for mobile menu */}
       {isOpen && (
         <div className={cn(
           'fixed inset-x-0 top-20 bottom-0 bg-black/60 z-40 md:hidden'
         )} />
       )}
 
-      {/* Mobile Menu */
-      }
+      {/* Mobile Menu */}
       <motion.div
         data-mobile-menu
         initial={{ x: '100%' }}
         animate={{ x: isOpen ? 0 : '100%' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className={cn(
-          'fixed inset-x-0 top-20 bottom-0 z-50 bg-oplera-dark backdrop-blur border-top border-white/10 p-6 overflow-y-auto',
+          'fixed inset-x-0 top-20 bottom-0 z-50 bg-oplera-dark backdrop-blur border-t border-white/10 p-6 overflow-y-auto',
           'md:hidden'
         )}
       >
