@@ -1,0 +1,68 @@
+{
+  "nav": {
+    "solutions": "Solutions",
+    "howWeWork": "How We Work",
+    "demo": "Demo",
+    "contact": "Contact",
+    "tryDemo": "Try Demo"
+  },
+  "hero": {
+    "title": "Automate Tomorrow.",
+    "titleHighlight": "Accelerate Today.",
+    "subtitle": "The Era of Smarter Operations Starts Here.",
+    "ctaPrimary": "Request a Demo",
+    "ctaSecondary": "Explore Solutions"
+  },
+  "services": {
+    "title": "Our",
+    "titleHighlight": "Solutions",
+    "card1Title": "Omni Support Agent",
+    "card1Desc": "Understands text & image messages instantly",
+    "card2Title": "Order Bot",
+    "card2Desc": "Automates Telegram & website orders",
+    "card3Title": "Construction Assistant",
+    "card3Desc": "Analyzes project photos & suggests materials",
+    "card4Title": "FAQ AI Agent",
+    "card4Desc": "Answers customer questions from your knowledge base",
+    "card5Title": "Workflow Integrations",
+    "card5Desc": "Connects with n8n, Zapier, APIs",
+    "card6Title": "Analytics Dashboard",
+    "card6Desc": "Monitor agent performance easily",
+    "comingSoon": "Coming Soon",
+    "learnMore": "Learn more"
+  },
+  "approach": {
+    "title": "Our",
+    "titleHighlight": "Approach",
+    "step1Title": "Discovery & Analysis",
+    "step1Desc": "We dive deep into your business processes, pain points, and goals to identify automation opportunities.",
+    "step2Title": "Custom AI Design",
+    "step2Desc": "Our team designs intelligent agents tailored to your specific needs—no templates, no compromises.",
+    "step3Title": "Integration & Training",
+    "step3Desc": "Seamless connection with your existing tools and comprehensive training of AI models on your data.",
+    "step4Title": "Deploy & Optimize",
+    "step4Desc": "Launch your automation and continuously improve based on real-world performance and feedback."
+  },
+  "testimonials": {
+    "title": "What Our",
+    "titleHighlight": "Clients Say",
+    "testimonial1": "Oplera built us a custom AI system that understands our unique workflow. We've reduced manual work by 70% and our team can now focus on strategic initiatives that drive real value.",
+    "author1Name": "Sarah Chen",
+    "author1Role": "CTO",
+    "author1Company": "TechFlow",
+    "testimonial2": "Unlike template solutions, Oplera designed intelligent agents specifically for our needs. The custom automation handles complex workflows with precision we never thought possible.",
+    "author2Name": "Marcus Rodriguez",
+    "author2Role": "Head of Engineering",
+    "author2Company": "DataVault",
+    "testimonial3": "Oplera didn't just implement a tool—they became our automation partner. Their custom approach to AI integration transformed how our entire organization operates.",
+    "author3Name": "Dr. Lisa Park",
+    "author3Role": "AI Research Lead",
+    "author3Company": "InnovateLab"
+  },
+  "demoCTA": {
+    "title": "Your AI Journey Starts Here",
+    "subtitle": "Let Oplera empower your workflows with AI that's compliant, efficient, and built for your industry.",
+    "ctaPrimary": "Request a Demo"
+  }
+}
+

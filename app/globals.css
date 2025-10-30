@@ -1,0 +1,169 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Prevent layout shifts */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  body {
+    font-family: var(--font-inter), 'Inter', sans-serif;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Optimize transitions - only for user interactions */
+  button, a, [role="button"] {
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+  
+  /* Prevent CLS from animations */
+  img, video, iframe {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+@layer components {
+  .gradient-bg {
+    background: linear-gradient(180deg, #0A1B3D 0%, #051122 100%);
+  }
+  
+  .glassmorphism {
+    background: rgba(10, 27, 61, 0.3);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(0, 209, 209, 0.1);
+  }
+  
+  /* Enhanced glassmorphism for header with aqua gradient */
+  .glassmorphism-header {
+    background: linear-gradient(90deg, #00F5FF 0%, #00C9FF 40%, #004B8D 100%);
+    box-shadow: inset 0 -1px 8px rgba(0, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    opacity: 0.9;
+    transition: opacity 0.3s ease;
+  }
+  
+  .glassmorphism-header.scrolled {
+    opacity: 0.92;
+  }
+  
+  /* Nav link hover effect - optimized for aqua gradient header */
+  .nav-link {
+    position: relative;
+    color: #060644;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+    background-image: linear-gradient(to right, #ffffff, #ffffff);
+    background-size: 0% 2px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    padding-bottom: 2px;
+    font-weight: 500;
+  }
+  
+  .nav-link:hover {
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 245, 255, 0.5);
+    background-size: 100% 2px;
+    transition: background-size 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+  }
+  
+  /* Enhanced CTA button with glow - optimized for aqua header */
+  .cta-button {
+    background: #004B8D !important;
+    color: #ffffff !important;
+    box-shadow: 0 0 12px rgba(0, 75, 141, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+    transition: all 0.25s ease;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .cta-button:hover {
+    background: #003d7a !important;
+    box-shadow: 0 0 18px rgba(0, 255, 255, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: scale(1.05);
+    border-color: rgba(255, 255, 255, 0.4);
+  }
+  
+  .shimmer-text {
+    background: linear-gradient(90deg, #ffffff 0%, #00D1D1 50%, #7A5AF8 100%);
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 2s linear infinite;
+  }
+  
+  .gradient-mesh {
+    background: radial-gradient(circle at 20% 50%, rgba(0, 209, 209, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(122, 90, 248, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 80%, rgba(0, 209, 209, 0.05) 0%, transparent 50%);
+  }
+  
+  .neon-border {
+    border: 1px solid #00D1D1;
+    box-shadow: 0 0 10px rgba(0, 209, 209, 0.3);
+  }
+  
+  .neon-border:hover {
+    box-shadow: 0 0 20px rgba(0, 209, 209, 0.6);
+  }
+  
+  .floating-particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: #00D1D1;
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite;
+  }
+  
+  .trust-badge {
+    background: rgba(0, 209, 209, 0.1);
+    border: 1px solid rgba(0, 209, 209, 0.3);
+    backdrop-filter: blur(10px);
+  }
+  
+  .hero-glow {
+    background: radial-gradient(circle at center, rgba(0, 209, 209, 0.2) 0%, transparent 70%);
+  }
+  
+  .feature-card {
+    transition: all 0.3s ease;
+  }
+  
+  .feature-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(0, 209, 209, 0.1);
+  }
+  
+  .pricing-card {
+    transition: all 0.3s ease;
+  }
+  
+  .pricing-card:hover {
+    transform: translateY(-4px);
+  }
+  
+  .pricing-card.popular {
+    border: 2px solid #00D1D1;
+    box-shadow: 0 0 30px rgba(0, 209, 209, 0.3);
+  }
+  
+  .form-input:focus {
+    border-color: #00D1D1;
+    box-shadow: 0 0 0 3px rgba(0, 209, 209, 0.1);
+  }
+  
+  .billing-toggle {
+    background: rgba(10, 27, 61, 0.5);
+    border: 1px solid rgba(0, 209, 209, 0.3);
+  }
+  
+  .billing-toggle.active {
+    background: #00D1D1;
+    color: #0A1B3D;
+  }
+}

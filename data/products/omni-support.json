@@ -1,0 +1,112 @@
+{
+  "hero": {
+    "icon": "🤖",
+    "title": "Meet ",
+    "titleHighlight": "Omni",
+    "subtitle": "Understands text, images, and customer intent instantly. Designed to automate your support, not just answer questions.",
+    "primaryCTA": {
+      "label": "Try the Live Demo",
+      "href": "/demo"
+    },
+    "secondaryCTA": {
+      "label": "Book an Implementation Call",
+      "href": "mailto:hello@oplera.ai"
+    }
+  },
+  "video": {
+    "sectionTitle": "Watch Omni in ",
+    "sectionTitleHighlight": "Action",
+    "description": "A short demo showing how Omni analyzes messages and automates responses in real-time.",
+    "videoSrc": "https://customer-xxxx.cloudflarestream.com/xxxxxxx/embed",
+    "placeholderText": "Demo Video Coming Soon - Replace iframe src with your video URL",
+    "primaryCTA": {
+      "label": "Try Live Demo",
+      "href": "/demo"
+    },
+    "secondaryCTA": {
+      "label": "Book Implementation Call",
+      "href": "mailto:hello@oplera.ai"
+    }
+  },
+  "features": {
+    "sectionTitle": "Features & ",
+    "sectionTitleHighlight": "Capabilities",
+    "items": [
+      {
+        "icon": "💬",
+        "title": "Multimodal Understanding",
+        "description": "Understands both text and images.",
+        "benefit": "Handle customer photos, screenshots, and messages seamlessly."
+      },
+      {
+        "icon": "⚙️",
+        "title": "Seamless Integrations",
+        "description": "Connects to Telegram, WhatsApp, and web instantly.",
+        "benefit": "Deploy across all your channels without complex setup."
+      },
+      {
+        "icon": "📊",
+        "title": "Real-Time Insights",
+        "description": "Tracks and improves support response in real time.",
+        "benefit": "Monitor performance and optimize agent behavior live."
+      },
+      {
+        "icon": "🤖",
+        "title": "Continuous Learning",
+        "description": "Gets smarter with every interaction.",
+        "benefit": "Your agent evolves with your business needs automatically."
+      }
+    ]
+  },
+  "implementation": {
+    "sectionTitle": "Choose Your ",
+    "sectionTitleHighlight": "Implementation Path",
+    "subtitle": "Whether you need a quick start or a fully customized enterprise solution, we've got you covered.",
+    "options": [
+      {
+        "title": "Basic Setup",
+        "subtitle": "Perfect for getting started quickly",
+        "price": "Starting from 199 JOD",
+        "features": [
+          "1 AI Agent",
+          "Single-channel (Telegram or Web)",
+          "Basic prompt tuning",
+          "Email setup support"
+        ],
+        "ctaLabel": "Request Basic Setup",
+        "ctaHref": "/demo",
+        "popular": false,
+        "isEnterprise": false
+      },
+      {
+        "title": "Enterprise Solution",
+        "subtitle": "Tailored to your specific needs",
+        "price": "Custom Quote",
+        "features": [
+          "Multi-channel integrations",
+          "Complex workflows + API connections",
+          "Custom training and analytics dashboard",
+          "Priority support & dedicated account manager"
+        ],
+        "ctaLabel": "Request Custom Quote",
+        "ctaHref": "mailto:hello@oplera.ai",
+        "popular": true,
+        "isEnterprise": true
+      }
+    ]
+  },
+  "finalCTA": {
+    "title": "Ready to Automate Your ",
+    "titleHighlight": "Support?",
+    "subtitle": "Let's build your intelligent agent together.",
+    "primaryCTA": {
+      "label": "Book a Call",
+      "href": "mailto:hello@oplera.ai"
+    },
+    "secondaryCTA": {
+      "label": "Try Live Demo",
+      "href": "/demo"
+    }
+  }
+}
+
