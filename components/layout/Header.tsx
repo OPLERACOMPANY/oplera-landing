@@ -119,14 +119,15 @@ export function Header() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu */
+      }
       <motion.div
         data-mobile-menu
         initial={{ x: '100%' }}
         animate={{ x: isOpen ? 0 : '100%' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className={cn(
-          'fixed top-20 right-0 w-80 h-full glassmorphism-header border-l border-white/5 p-6',
+          'fixed inset-x-0 top-20 bottom-0 z-50 bg-oplera-dark/95 backdrop-blur border-t border-white/10 p-6',
           'md:hidden'
         )}
       >
@@ -135,7 +136,7 @@ export function Header() {
             <button
               key={item.label}
               onClick={() => handleNavClick(item.href)}
-              className="text-white/90 hover:text-white transition-all text-left text-base hover:text-shadow-[0_0_6px_rgba(0,255,255,0.4)]"
+              className="text-white/90 hover:text-white transition-all text-left text-base"
             >
               {item.label}
             </button>

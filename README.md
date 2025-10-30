@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # OPLERA Landing Page
 
 A modern, responsive landing page for OPLERA - an AI Automation Agency, built with Next.js 14, TypeScript, and Tailwind CSS.
@@ -171,3 +172,7 @@ This project is licensed under the MIT License.
 ## 📞 Support
 
 For support, email support@oplera.com or create an issue in the repository.
+=======
+# oplera-landing
+Oplera Official Website built with Next.js and TailwindCSS
+>>>>>>> 59a2b9011170a8a37ad2b806acffbfe29ca0c3cc

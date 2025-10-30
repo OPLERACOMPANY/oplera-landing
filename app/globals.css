@@ -37,13 +37,13 @@
     border: 1px solid rgba(0, 209, 209, 0.1);
   }
   
-  /* Enhanced glassmorphism for header with aqua gradient */
+  /* Dark glassmorphism header for better contrast on mobile/desktop */
   .glassmorphism-header {
-    background: linear-gradient(90deg, #00F5FF 0%, #00C9FF 40%, #004B8D 100%);
-    box-shadow: inset 0 -1px 8px rgba(0, 255, 255, 0.2);
+    background: linear-gradient(180deg, #0A1B3D 0%, #051122 100%);
+    box-shadow: 0 1px 12px rgba(0, 0, 0, 0.25), inset 0 -1px 0 rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-    opacity: 0.9;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    opacity: 1;
     transition: opacity 0.3s ease;
   }
   
@@ -51,10 +51,10 @@
     opacity: 0.92;
   }
   
-  /* Nav link hover effect - optimized for aqua gradient header */
+  /* Nav link styling for dark header */
   .nav-link {
     position: relative;
-    color: #060644;
+    color: #E4E9EE;
     transition: color 0.3s ease, text-shadow 0.3s ease;
     background-image: linear-gradient(to right, #ffffff, #ffffff);
     background-size: 0% 2px;
@@ -66,7 +66,7 @@
   
   .nav-link:hover {
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(0, 245, 255, 0.5);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.7), 0 0 18px rgba(0, 209, 209, 0.4);
     background-size: 100% 2px;
     transition: background-size 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   }
