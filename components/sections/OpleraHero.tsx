@@ -10,25 +10,33 @@ export function OpleraHero() {
     <section className="min-h-screen flex items-center justify-center relative overflow-hidden gradient-mesh pt-16">
       {/* Animated Particles Background - Reduced for performance */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        {[...Array(8)].map((_, i) => (
-          <motion.div
+      {[...Array(8)].map((_, i) => {
+        const left = Math.random() * 100
+        const top = Math.random() * 100
+        return (
+          <div
             key={i}
-            className="absolute w-1 h-1 bg-oplera-cyan rounded-full will-change-transform"
+            className="absolute w-1 h-1 will-change-transform"
             style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
+              left: `${left}%`,
+              top: `${top}%`,
             }}
-            animate={{
-              y: [0, -30, 0],
-              opacity: [0.2, 0.8, 0.2],
-            }}
-            transition={{
-              duration: 3 + Math.random() * 2,
-              repeat: Infinity,
-              delay: Math.random() * 2,
-            }}
-          />
-        ))}
+          >
+            <motion.div
+              className="w-full h-full bg-oplera-cyan rounded-full"
+              animate={{
+                y: [0, -30, 0],
+                opacity: [0.2, 0.8, 0.2],
+              }}
+              transition={{
+                duration: 3 + Math.random() * 2,
+                repeat: Infinity,
+                delay: Math.random() * 2,
+              }}
+            />
+          </div>
+        )
+      })}
       </div>
 
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center relative z-10">
