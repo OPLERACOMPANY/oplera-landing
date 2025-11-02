@@ -39,12 +39,29 @@ export function Header() {
   }, [lastScrollY])
 
   const navigationItems = [
-    { label: 'Solutions', href: '#solutions' },
+    {
+      label: 'Solutions',
+      href: '#solutions',
+      children: [
+        { label: 'Omni Support', href: '/omni-support' },
+        { label: 'Orderbot', href: '/orderbot' },
+        { label: 'Sales Agent', href: '/sales-agent' },
+        { label: 'Voice Agent', href: '/voice-agent' },
+        { label: 'CRM Assistant', href: '/crm-assistant' },
+        { label: 'FAQ Assistant', href: '/faq-agent' },
+      ],
+    },
     { label: 'How We Work', href: '#approach' },
     { label: 'Support Plans', href: '/maintenance' },
     { label: 'Demo', href: '/demo' },
     { label: 'Contact', href: 'mailto:hello@oplera.ai' },
-  ]
+  ] as Array<{
+    label: string
+    href: string
+    children?: Array<{ label: string; href: string }>
+  }>
+
+  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null)
 
   const handleNavClick = (href: string) => {
     closeMenu()
@@ -75,7 +92,7 @@ export function Header() {
       )}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
+        <div className="flex justify-between items-center h-20 z-[60] relative">
           {/* Logo */}
           <a href="/" className="flex items-center cursor-pointer group pl-1">
             <img
@@ -89,13 +106,29 @@ export function Header() {
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center space-x-6">
             {navigationItems.map((item) => (
-              <button
-                key={item.label}
-                onClick={() => handleNavClick(item.href)}
-                className="nav-link text-base"
-              >
-                {item.label}
-              </button>
+              <div key={item.label} className="relative group">
+                <button
+                  onClick={() => handleNavClick(item.href)}
+                  className="nav-link text-base"
+                  aria-haspopup={!!item.children}
+                  aria-expanded={false}
+                >
+                  {item.label}
+                </button>
+                {item.children && (
+                  <div className="dropdown-panel absolute left-0 mt-3 w-64 rounded-md p-2 opacity-0 pointer-events-none translate-y-2 transition-all duration-200 group-hover:opacity-100 group-hover:pointer-events-auto group-hover:translate-y-0 z-50">
+                    {item.children.map((sub) => (
+                      <button
+                        key={sub.label}
+                        onClick={() => handleNavClick(sub.href)}
+                        className="submenu-link w-full text-left rounded-md px-3 py-2"
+                      >
+                        {sub.label}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
             ))}
             <button
               onClick={() => handleNavClick('/demo')}
@@ -119,6 +152,13 @@ export function Header() {
         </div>
       </div>
 
+      {/* Mobile overlay for mobile menu */}
+      {isOpen && (
+        <div className={cn(
+          'fixed inset-x-0 top-20 bottom-0 bg-black/60 z-40 md:hidden'
+        )} />
+      )}
+
       {/* Mobile Menu */}
       <motion.div
         data-mobile-menu
@@ -126,19 +166,49 @@ export function Header() {
         animate={{ x: isOpen ? 0 : '100%' }}
         transition={{ duration: 0.3, ease: 'easeOut' }}
         className={cn(
-          'fixed top-20 right-0 w-80 h-full glassmorphism-header border-l border-white/5 p-6',
+          'fixed inset-x-0 top-20 bottom-0 z-50 bg-oplera-dark backdrop-blur border-t border-white/10 p-6 overflow-y-auto',
           'md:hidden'
         )}
       >
-        <nav className="flex flex-col space-y-6">
+        <nav className="flex flex-col space-y-2">
           {navigationItems.map((item) => (
-            <button
-              key={item.label}
-              onClick={() => handleNavClick(item.href)}
-              className="text-white/90 hover:text-white transition-all text-left text-base hover:text-shadow-[0_0_6px_rgba(0,255,255,0.4)]"
-            >
-              {item.label}
-            </button>
+            <div key={item.label} className="w-full">
+              <button
+                onClick={() => {
+                  if (item.children) {
+                    setOpenSubmenu(openSubmenu === item.label ? null : item.label)
+                  } else {
+                    handleNavClick(item.href)
+                  }
+                }}
+                className="text-white/90 hover:text-white transition-all text-left text-base w-full py-3"
+                aria-expanded={openSubmenu === item.label}
+                aria-controls={`submenu-${item.label}`}
+              >
+                {item.label}
+              </button>
+              {item.children && (
+                <div
+                  id={`submenu-${item.label}`}
+                  className={cn(
+                    'pl-3 border-l border-white/10 overflow-hidden transition-all duration-200 rounded-md',
+                    openSubmenu === item.label ? 'max-h-[600px] bg-oplera-dark' : 'max-h-0'
+                  )}
+                >
+                  <div className="flex flex-col py-1">
+                    {item.children.map((sub) => (
+                      <button
+                        key={sub.label}
+                        onClick={() => handleNavClick(sub.href)}
+                        className="submenu-link text-left w-full rounded-md px-3 py-2"
+                      >
+                        {sub.label}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
           ))}
           <button
             onClick={() => handleNavClick('/demo')}
