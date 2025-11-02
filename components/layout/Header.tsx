@@ -188,25 +188,31 @@ export function Header() {
                 {item.label}
               </button>
               {item.children && (
-                <div
+                <motion.div
                   id={`submenu-${item.label}`}
+                  initial={false}
+                  animate={{
+                    height: openSubmenu === item.label ? 'auto' : 0,
+                    opacity: openSubmenu === item.label ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                   className={cn(
-                    'pl-3 border-l border-white/10 overflow-hidden transition-all duration-200 rounded-md',
-                    openSubmenu === item.label ? 'max-h-[600px] bg-oplera-dark' : 'max-h-0'
+                    'pl-3 border-l border-white/10 rounded-md overflow-hidden',
+                    openSubmenu === item.label && 'bg-oplera-dark'
                   )}
                 >
-                  <div className="flex flex-col py-1">
+                  <div className="flex flex-col py-2 space-y-1">
                     {item.children.map((sub) => (
                       <button
                         key={sub.label}
                         onClick={() => handleNavClick(sub.href)}
-                        className="submenu-link text-left w-full rounded-md px-3 py-2"
+                        className="submenu-link text-left w-full rounded-md px-3 py-2.5 text-sm"
                       >
                         {sub.label}
                       </button>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
           ))}
