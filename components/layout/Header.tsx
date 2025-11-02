@@ -14,7 +14,7 @@ export function Header() {
   const [isVisible, setIsVisible] = useState(true)
   const [lastScrollY, setLastScrollY] = useState(0)
 
-  // ===== Desktop hide/show on scroll =====
+  // ===== Desktop hide/show on scroll  =====
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY
