@@ -192,7 +192,7 @@ export function Header() {
                   id={`submenu-${item.label}`}
                   className={cn(
                     'pl-3 border-l border-white/10 overflow-hidden transition-all duration-200 rounded-md',
-                    openSubmenu === item.label ? 'max-h-[600px] bg-oplera-dark/95' : 'max-h-0'
+                    openSubmenu === item.label ? 'max-h-[600px] bg-oplera-dark' : 'max-h-0'
                   )}
                 >
                   <div className="flex flex-col py-1">
