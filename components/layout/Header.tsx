@@ -188,13 +188,17 @@ export function Header() {
                 {item.label}
               </button>
               {item.children && (
-                <div
+                <motion.div
                   id={`submenu-${item.label}`}
+                  initial={false}
+                  animate={{
+                    height: openSubmenu === item.label ? 'auto' : 0,
+                    opacity: openSubmenu === item.label ? 1 : 0,
+                  }}
+                  transition={{ duration: 0.2, ease: 'easeOut' }}
                   className={cn(
-                    'pl-3 border-l border-white/10 transition-all duration-200 rounded-md',
-                    openSubmenu === item.label 
-                      ? 'max-h-[1000px] opacity-100 bg-oplera-dark overflow-visible' 
-                      : 'max-h-0 opacity-0 overflow-hidden'
+                    'pl-3 border-l border-white/10 rounded-md overflow-hidden',
+                    openSubmenu === item.label && 'bg-oplera-dark'
                   )}
                 >
                   <div className="flex flex-col py-2 space-y-1">
@@ -208,7 +212,7 @@ export function Header() {
                       </button>
                     ))}
                   </div>
-                </div>
+                </motion.div>
               )}
             </div>
           ))}
