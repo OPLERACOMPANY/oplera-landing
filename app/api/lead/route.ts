@@ -6,10 +6,9 @@ export async function POST(req: NextRequest) {
   try {
     const form = await req.json();
 
-    // ✅ Normalize payload to what N8N expects
     const payload = {
-      fullName: form.fullName,
-      businessEmail: form.businessEmail,
+      fullName: form.fullName ?? "",
+      businessEmail: form.businessEmail ?? "",
       phoneNumber: form.phoneNumber ?? "",
       companyName: form.companyName ?? "",
       industry: form.industry ?? "",
@@ -20,9 +19,11 @@ export async function POST(req: NextRequest) {
       solutionType: form.solutionType ?? "",
       timeline: form.timeline ?? "",
       message: form.message ?? "",
-      source: "oplera-website",
+      source: "landing-form",
       timestamp: new Date().toISOString(),
     };
+
+    console.log("🚀 Sending to N8N:", payload);
 
     const n8nRes = await fetch(N8N_WEBHOOK_URL, {
       method: "POST",
@@ -30,8 +31,10 @@ export async function POST(req: NextRequest) {
       body: JSON.stringify(payload),
     });
 
+    const text = await n8nRes.text();
+    console.log("📩 N8N Response:", text);
+
     if (!n8nRes.ok) {
-      const text = await n8nRes.text();
       return NextResponse.json(
         { error: "N8N webhook failed", details: text },
         { status: 500 }
@@ -39,10 +42,10 @@ export async function POST(req: NextRequest) {
     }
 
     return NextResponse.json({ success: true }, { status: 200 });
-  } catch (e) {
-    console.error("API ERROR:", e);
+  } catch (e: any) {
+    console.error("❌ API ERROR:", e);
     return NextResponse.json(
-      { error: "Internal server error" },
+      { error: "Internal server error", details: e.message },
       { status: 500 }
     );
   }
