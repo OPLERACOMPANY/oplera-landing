@@ -70,6 +70,24 @@
     background-size: 100% 2px;
     transition: background-size 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
   }
+
+  /* Dropdown panel styling (desktop) - dark background for submenu */
+  .dropdown-panel {
+    background: rgba(10, 27, 61, 0.98);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+  }
+
+  .submenu-link {
+    color: #E4E9EE;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+
+  .submenu-link:hover {
+    color: #ffffff;
+    background: rgba(0, 209, 209, 0.09);
+  }
   
   /* Enhanced CTA button with glow - optimized for aqua header */
   .cta-button {

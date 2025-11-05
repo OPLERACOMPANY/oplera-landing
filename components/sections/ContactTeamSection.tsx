@@ -76,6 +76,8 @@ export function ContactTeamSection() {
     projectType: '',
     message: '',
   })
+  const [submitting, setSubmitting] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState<string | null>(null)
 
   const handleScheduleMeeting = (expert: Expert) => {
     setSelectedExpert(expert)
@@ -218,7 +220,29 @@ export function ContactTeamSection() {
               </h3>
               <p className="text-gray-400 mb-6">We'll match you with the right expert and get back to you within 24 hours</p>
 
-              <form className="space-y-4" onSubmit={(e) => { e.preventDefault(); alert('Form submitted! We will contact you soon.'); }}>
+              <form
+                className="space-y-4"
+                onSubmit={async (e) => {
+                  e.preventDefault()
+                  setSubmitting(true)
+                  setSubmitMessage(null)
+                  try {
+                    const res = await fetch('/api/contact', {
+                      method: 'POST',
+                      headers: { 'Content-Type': 'application/json' },
+                      body: JSON.stringify(formData),
+                    })
+                    const data = await res.json()
+                    if (!res.ok) throw new Error(data?.error || 'Submission failed')
+                    setSubmitMessage('Thanks! We will contact you within 24 hours.')
+                    setFormData({ name: '', email: '', company: '', projectType: '', message: '' })
+                  } catch (err) {
+                    setSubmitMessage('There was an error. Please try again.')
+                  } finally {
+                    setSubmitting(false)
+                  }
+                }}
+              >
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Your Name *</label>
                   <input
@@ -285,10 +309,15 @@ export function ContactTeamSection() {
 
                 <button
                   type="submit"
-                  className="w-full py-4 bg-gradient-to-r from-oplera-cyan to-[#15B3A3] text-oplera-navy rounded-lg font-bold text-lg shadow-xl shadow-oplera-cyan/50 hover:shadow-oplera-cyan/70 hover:scale-[1.02] transition-all"
+                  disabled={submitting}
+                  className="w-full py-4 bg-gradient-to-r from-oplera-cyan to-[#15B3A3] text-oplera-navy rounded-lg font-bold text-lg shadow-xl shadow-oplera-cyan/50 hover:shadow-oplera-cyan/70 hover:scale-[1.02] transition-all disabled:opacity-60"
                 >
-                  Send Message
+                  {submitting ? 'Submitting...' : 'Send Message'}
                 </button>
+
+                {submitMessage && (
+                  <p className="text-sm text-gray-300 text-center">{submitMessage}</p>
+                )}
 
                 <p className="text-xs text-gray-500 text-center">
                   🔒 Your information is secure and will never be shared with third parties

@@ -171,3 +171,7 @@ This project is licensed under the MIT License.
 ## 📞 Support
 
 For support, email support@oplera.com or create an issue in the repository.
+=======
+# oplera-landing
+Oplera Official Website built with Next.js and TailwindCSS
+>>>>>>> 59a2b9011170a8a37ad2b806acffbfe29ca0c3cc

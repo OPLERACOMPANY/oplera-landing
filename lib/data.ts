@@ -10,32 +10,46 @@ export const navigationItems: NavigationItem[] = [
 export const testimonials: Testimonial[] = [
   {
     id: '1',
-    quote: "Oplera built us a custom AI system that understands our unique workflow. We've reduced manual work by 70% and our team can now focus on strategic initiatives that drive real value.",
+    quote:
+      "Oplera built a custom AI automation that perfectly matched our internal workflow. We've cut manual tasks by over 70%, and now our team focuses entirely on growth and strategy.",
     author: {
-      name: 'Sarah Chen',
+      name: 'Sara Al-Khatib',
       role: 'CTO',
-      company: 'TechFlow',
-      initials: 'SC',
+      company: 'TechFlow MENA',
+      initials: 'SA',
     },
   },
   {
     id: '2',
-    quote: 'Unlike template solutions, Oplera designed intelligent agents specifically for our needs. The custom automation handles complex workflows with precision we never thought possible.',
+    quote:
+      "What impressed us most is how Oplera designed smart agents tailored for our business. The automation handles complex workflows smoothly and with exceptional accuracy.",
     author: {
-      name: 'Marcus Rodriguez',
+      name: 'Marwan Al-Assaf',
       role: 'Head of Engineering',
-      company: 'DataVault',
-      initials: 'MR',
+      company: 'DataVault Jordan',
+      initials: 'MA',
     },
   },
   {
     id: '3',
-    quote: "Oplera didn't just implement a tool—they became our automation partner. Their custom approach to AI integration transformed how our entire organization operates.",
+    quote:
+      "Oplera became more than a vendor—they became our automation partner. Their expertise in AI integration reshaped how our organization operates every single day.",
     author: {
-      name: 'Dr. Lisa Park',
+      name: 'Dr. Leila Hassan',
       role: 'AI Research Lead',
       company: 'InnovateLab',
-      initials: 'LP',
+      initials: 'LH',
+    },
+  },
+  {
+    id: '4',
+    quote:
+      "Working with Oplera transformed how OrigamiSoft operates. Their AI automation cut our support handling time by more than half and made our customer interactions far more efficient.",
+    author: {
+      name: 'Omar Haddad',
+      role: 'Operations Manager',
+      company: 'OrigamiSoft',
+      initials: 'OH',
     },
   },
 ]
