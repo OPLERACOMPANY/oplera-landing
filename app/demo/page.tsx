@@ -118,10 +118,25 @@ export default function DemoPage() {
     e.preventDefault()
     if (!validateStep(4)) return
     try {
-      const res = await fetch('/api/demo', {
+      const res = await fetch('/api/lead', {
+
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          fullName: formData.fullName,
+          email: formData.businessEmail,
+          phone: formData.phoneNumber,
+          companyName: formData.companyName,
+          businessType: formData.industry,
+          website: formData.websiteUrl,
+          social: formData.socialMediaLinks,
+          automationGoal: formData.automationGoal,
+          preferredChannel: formData.preferredChannel,
+          solutionType: formData.solutionType,
+          timeline: formData.timeline,
+          projectDescription: formData.message,
+        })
+        
       })
       if (!res.ok) throw new Error('Submission failed')
       setIsSubmitted(true)
