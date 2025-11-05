@@ -114,11 +114,19 @@ export default function DemoPage() {
     setCurrentStep(Math.max(1, currentStep - 1))
   }
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (validateStep(4)) {
-      console.log('Form submitted:', formData)
+    if (!validateStep(4)) return
+    try {
+      const res = await fetch('/api/demo', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (!res.ok) throw new Error('Submission failed')
       setIsSubmitted(true)
+    } catch (err) {
+      alert('There was an error submitting your request. Please try again.')
     }
   }
 
