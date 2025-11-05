@@ -1,96 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// N8N Webhook URL (provided)
-const N8N_WEBHOOK_URL = 'https://n8n.oplera.com/webhook/oplera/lead'
+const N8N_WEBHOOK_URL = "https://n8n.oplera.com/webhook/oplera/lead"
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json()
-    const {
-      fullName,
-      businessEmail,
-      phoneNumber,
-      companyName,
-      industry,
-      websiteUrl,
-      socialMediaLinks,
-      automationGoal,
-      preferredChannel,
-      solutionType,
-      timeline,
-      message,
-    } = body
+    const body = await req.json()
 
-    // Validation
-    if (!fullName || !businessEmail || !companyName || !automationGoal || !solutionType || !timeline) {
+    const res = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    })
+
+    let result = null
+    try { result = await res.json() } catch {}
+
+    if (!res.ok) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
+        { error: "N8N webhook failed", details: result },
+        { status: 500 }
       )
     }
 
-    // Calculate lead score (simple scoring algorithm)
-    let leadScore = 0
-    if (timeline === 'asap') leadScore += 30
-    else if (timeline === '1-3months') leadScore += 20
-    else if (timeline === '3-6months') leadScore += 10
-
-    if (websiteUrl) leadScore += 10
-    if (phoneNumber) leadScore += 10
-    if (preferredChannel && preferredChannel.length > 0) leadScore += 10
-
-    // Determine priority
-    const priority = leadScore >= 40 ? 'HIGH' : leadScore >= 20 ? 'MEDIUM' : 'LOW'
-
-    // Send to N8N with enriched data
-    const response = await fetch(N8N_WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        source: 'demo-request-form',
-        payload: {
-          fullName,
-          businessEmail,
-          phoneNumber: phoneNumber || '',
-          companyName,
-          industry: industry || '',
-          websiteUrl: websiteUrl || '',
-          socialMediaLinks: socialMediaLinks || '',
-          automationGoal,
-          preferredChannel: preferredChannel || [],
-          solutionType,
-          timeline,
-          message: message || '',
-        },
-        leadScore,
-        priority,
-        timestamp: new Date().toISOString(),
-      }),
-    })
-
-    if (!response.ok) {
-      throw new Error('N8N webhook failed')
-    }
-
-    let result: unknown = null
-    try { result = await response.json() } catch {}
-
     return NextResponse.json(
-      {
-        success: true,
-        message: 'Demo request submitted successfully',
-        data: result,
-      },
+      { success: true, message: "Lead sent to automation", data: result },
       { status: 200 }
     )
-  } catch (error) {
-    console.error('Demo form error:', error)
+
+  } catch (err) {
+    console.error("Lead API error:", err)
     return NextResponse.json(
-      { error: 'Failed to submit demo request' },
+      { error: "Internal server error" },
       { status: 500 }
     )
   }
 }
 
+// Reject GET so we don't get 405
+export function GET() {
+  return NextResponse.json({ message: "Use POST only" }, { status: 200 })
+}

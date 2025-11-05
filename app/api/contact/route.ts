@@ -1,61 +1,42 @@
 import { NextRequest, NextResponse } from 'next/server'
 
-// N8N Webhook URL (provided)
-const N8N_WEBHOOK_URL = 'https://n8n.oplera.com/webhook/oplera/lead'
+const N8N_WEBHOOK_URL = "https://n8n.oplera.com/webhook/oplera/lead"
 
-export async function POST(request: NextRequest) {
+export async function POST(req: NextRequest) {
   try {
-    const body = await request.json()
-    const { name, email, company, projectType, message } = body
+    const body = await req.json()
 
-    // Validation
-    if (!name || !email || !projectType) {
+    const res = await fetch(N8N_WEBHOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    })
+
+    let result = null
+    try { result = await res.json() } catch {}
+
+    if (!res.ok) {
       return NextResponse.json(
-        { error: 'Missing required fields' },
-        { status: 400 }
+        { error: "N8N webhook failed", details: result },
+        { status: 500 }
       )
     }
 
-    // Send to N8N
-    const response = await fetch(N8N_WEBHOOK_URL, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        source: 'contact-form',
-        payload: {
-          name,
-          email,
-          company: company || '',
-          projectType,
-          message: message || '',
-        },
-        timestamp: new Date().toISOString(),
-      }),
-    })
-
-    if (!response.ok) {
-      throw new Error('N8N webhook failed')
-    }
-
-    let result: unknown = null
-    try { result = await response.json() } catch {}
-
     return NextResponse.json(
-      {
-        success: true,
-        message: 'Form submitted successfully',
-        data: result,
-      },
+      { success: true, message: "Lead sent to automation", data: result },
       { status: 200 }
     )
-  } catch (error) {
-    console.error('Contact form error:', error)
+
+  } catch (err) {
+    console.error("Lead API error:", err)
     return NextResponse.json(
-      { error: 'Failed to submit form' },
+      { error: "Internal server error" },
       { status: 500 }
     )
   }
 }
 
+// Reject GET so we don't get 405
+export function GET() {
+  return NextResponse.json({ message: "Use POST only" }, { status: 200 })
+}
