@@ -141,7 +141,7 @@ export default function DemoPage() {
       if (!res.ok) throw new Error('Submission failed')
       setIsSubmitted(true)
     } catch (err) {
-      alert('There was an error submitting your request. Please try again.')
+      alert('There was an error submitting your request. Please.')
     }
   }
 
