@@ -4,7 +4,7 @@
  * Omni Support Agent Product Page
  * 
  * Example of using the ProductPageTemplate with JSON data.
- * This approach makes it extremely easy to create new product pages.
+ * This pproach makes it extremely easy to create new product pages.
  */
 
 import { ProductPageTemplate } from '@/components/ProductPageTemplate'
