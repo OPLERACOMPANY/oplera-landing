@@ -68,10 +68,13 @@
         "subtitle": "Perfect for getting started quickly",
         "price": "Starting from 199 JOD",
         "features": [
-          "1 AI Agent",
-          "Single-channel (Telegram or Web)",
-          "Basic prompt tuning",
-          "Email setup support"
+          "1 AI Agent connected to your preferred platform (Telegram, WhatsApp, or Web)",
+          "Full installation and setup — ready to use from day one",
+          "1-year hosting included",
+          "RAG AI capabilities (understands and responds using your own data)",
+          "Order automation that adds new orders directly to Google Sheets",
+          "Basic prompt and persona tuning",
+          "30-minute onboarding session"
         ],
         "ctaLabel": "Request Basic Setup",
         "ctaHref": "/demo",
