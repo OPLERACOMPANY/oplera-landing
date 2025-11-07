@@ -1,5 +1,4 @@
 'use client'
-
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Check, Mail, Phone, Building, Globe, Target, Calendar, MessageSquare } from 'lucide-react'
@@ -117,9 +116,9 @@ export default function DemoPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (!validateStep(4)) return
+
     try {
       const res = await fetch('/api/lead', {
-
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -141,7 +140,7 @@ export default function DemoPage() {
       if (!res.ok) throw new Error('Submission failed')
       setIsSubmitted(true)
     } catch (err) {
-      alert('There was an error submitting your request. Please.')
+      alert('There was an error submitting your request. Please try again.')
     }
   }
 
@@ -162,7 +161,6 @@ export default function DemoPage() {
           >
             <Check className="w-12 h-12 text-white" strokeWidth={3} />
           </motion.div>
-
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -171,7 +169,6 @@ export default function DemoPage() {
           >
             Thank You, {formData.fullName.split(' ')[0]}! 🎉
           </motion.h1>
-
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -180,7 +177,6 @@ export default function DemoPage() {
           >
             We've received your demo request for <span className="text-oplera-cyan font-semibold">{formData.companyName}</span>
           </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -203,7 +199,6 @@ export default function DemoPage() {
               </li>
             </ul>
           </motion.div>
-
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -212,7 +207,6 @@ export default function DemoPage() {
           >
             ⚡ No spam — only tailored solutions from Oplera.
           </motion.p>
-
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -287,7 +281,6 @@ export default function DemoPage() {
                     {step.title}
                   </span>
                 </motion.div>
-
                 {index < steps.length - 1 && (
                   <div className={`flex-1 h-1 mx-2 rounded transition-all ${currentStep > step.id ? 'bg-oplera-cyan' : 'bg-oplera-navy/50'}`} />
                 )}
