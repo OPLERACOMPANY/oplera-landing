@@ -104,10 +104,11 @@ export function ProductPageTemplate({ data }: ProductPageTemplateProps) {
         </div>
       </section>
 
-      {/* Video Demo Section - Temporarily Disabled */}
-      {/* <section className="py-20 px-4 relative">
+      {/* Video Demo Section */}
+      <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-radial from-oplera-cyan/5 to-transparent pointer-events-none" />
         
+        {/* Floating particles - optimized */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -155,22 +156,25 @@ export function ProductPageTemplate({ data }: ProductPageTemplateProps) {
             className="glassmorphism rounded-2xl p-6 md:p-8 border-2 border-oplera-cyan/30 shadow-2xl shadow-oplera-cyan/20"
           >
             <div className="relative rounded-2xl overflow-hidden border border-oplera-cyan/20 mb-8">
+              {/* TODO: Add video URL here when ready 
+                  Replace the src attribute below with your actual video URL
+                  Example: src="https://customer-xxxx.cloudflarestream.com/xxxxxxx/iframe" 
+              */}
               <iframe
-                src={(video as any).videoSrc}
+                src=""
                 allow="accelerometer; autoplay; encrypted-media; picture-in-picture"
                 allowFullScreen
                 className="w-full h-[300px] md:h-[480px] bg-oplera-navy/50"
                 title="Product Demo Video"
               />
-              {(video as any).placeholderText && (
-                <div className="absolute inset-0 bg-oplera-navy/90 flex items-center justify-center pointer-events-none">
-                  <div className="text-center px-4">
-                    <div className="text-8xl mb-4 animate-pulse">▶️</div>
-                    <p className="text-xl text-gray-300">Demo Video Coming Soon</p>
-                    <p className="text-sm text-gray-500 mt-2">{(video as any).placeholderText}</p>
-                  </div>
+              {/* Placeholder overlay - remove this div when video is added */}
+              <div className="absolute inset-0 bg-oplera-navy/90 flex items-center justify-center pointer-events-none">
+                <div className="text-center px-4">
+                  <div className="text-8xl mb-4 animate-pulse">▶️</div>
+                  <p className="text-xl text-gray-300">Demo Video Coming Soon</p>
+                  <p className="text-sm text-gray-500 mt-2">Video will be added here</p>
                 </div>
-              )}
+              </div>
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -189,7 +193,7 @@ export function ProductPageTemplate({ data }: ProductPageTemplateProps) {
             </div>
           </motion.div>
         </div>
-      </section> */}
+      </section>
 
       {/* Features & Capabilities */}
       <section className="py-20 px-4">
