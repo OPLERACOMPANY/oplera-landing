@@ -53,6 +53,7 @@ const timelines = [
 export default function DemoPage() {
   const [currentStep, setCurrentStep] = useState(1)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [formData, setFormData] = useState<FormData>({
     fullName: '', businessEmail: '', phoneNumber: '', companyName: '', industry: '',
@@ -115,7 +116,9 @@ export default function DemoPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    if (!validateStep(4)) return
+    if (!validateStep(4) || isSubmitting) return
+
+    setIsSubmitting(true)
 
     try {
       const res = await fetch('/api/lead', {
@@ -141,6 +144,8 @@ export default function DemoPage() {
       setIsSubmitted(true)
     } catch (err) {
       alert('There was an error submitting your request. Please try again.')
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -629,9 +634,22 @@ export default function DemoPage() {
             ) : (
               <button
                 type="submit"
-                className="px-8 py-3 bg-gradient-to-r from-oplera-cyan to-oplera-purple text-white rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-oplera-cyan/50 hover:scale-105 transition-all"
+                disabled={isSubmitting}
+                className="px-8 py-3 bg-gradient-to-r from-oplera-cyan to-oplera-purple text-white rounded-xl font-bold text-lg hover:shadow-xl hover:shadow-oplera-cyan/50 hover:scale-105 transition-all disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 flex items-center gap-2"
               >
-                Get My Custom Proposal 🚀
+                {isSubmitting ? (
+                  <>
+                    <svg className="animate-spin h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Submitting...
+                  </>
+                ) : (
+                  <>
+                    Get My Custom Proposal 🚀
+                  </>
+                )}
               </button>
             )}
           </div>
