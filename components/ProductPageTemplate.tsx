@@ -104,11 +104,10 @@ export function ProductPageTemplate({ data }: ProductPageTemplateProps) {
         </div>
       </section>
 
-      {/* Video Demo Section */}
-      <section className="py-20 px-4 relative">
+      {/* Video Demo Section - Temporarily Disabled */}
+      {/* <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-radial from-oplera-cyan/5 to-transparent pointer-events-none" />
         
-        {/* Floating particles - optimized */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           {[...Array(6)].map((_, i) => (
             <motion.div
@@ -190,7 +189,7 @@ export function ProductPageTemplate({ data }: ProductPageTemplateProps) {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features & Capabilities */}
       <section className="py-20 px-4">

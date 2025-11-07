@@ -93,8 +93,8 @@ export default function OmniSupportPage() {
         </div>
       </section>
 
-      {/* Video Demo Section */}
-      <section className="py-20 px-4 relative">
+      {/* Video Demo Section - Temporarily Disabled */}
+      {/* <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-radial from-oplera-cyan/5 to-transparent pointer-events-none" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           {[...Array(6)].map((_, i) => (
@@ -141,7 +141,7 @@ export default function OmniSupportPage() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </section> */}
 
       {/* Features & Capabilities */}
       <section className="py-20 px-4">
