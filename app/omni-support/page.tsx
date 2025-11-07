@@ -244,7 +244,7 @@ export default function OmniSupportPage() {
                     ) : (
                       <a
                         href={cta.href}
-                        className="block w-full px-6 py-4 border-2 border-oplera-cyan text-oplera-cyan rounded-lg font-semibold text-center hover:bg-oplera-cyan hover:text-oplera-navy hover:scale-105 hover:shadow-lg hover:shadow-oplera-cyan/30 transition-all"
+                        className="block w-full px-6 py-4 bg-oplera-cyan text-oplera-navy rounded-lg font-semibold text-center hover:scale-105 hover:shadow-lg hover:shadow-oplera-cyan/30 transition-all"
                       >
                         {cta.label}
                       </a>
