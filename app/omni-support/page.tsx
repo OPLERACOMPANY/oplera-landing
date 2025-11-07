@@ -93,8 +93,8 @@ export default function OmniSupportPage() {
         </div>
       </section>
 
-      {/* Video Demo Section - Temporarily Disabled */}
-      {/* <section className="py-20 px-4 relative">
+      {/* Video Demo Section */}
+      <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-radial from-oplera-cyan/5 to-transparent pointer-events-none" />
         <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
           {[...Array(6)].map((_, i) => (
@@ -121,11 +121,24 @@ export default function OmniSupportPage() {
               <div className="bg-oplera-navy/40 backdrop-blur-sm rounded-3xl p-4 md:p-6">
                 <div className="mb-6">
                   <div className="relative w-full overflow-hidden rounded-3xl border border-oplera-cyan/20 shadow-lg" style={{ paddingTop: '56.25%' }}>
-                    <video className="absolute top-0 left-0 w-full h-full rounded-3xl object-cover" controls preload="metadata" poster="https://vz-c5b883c0-a50.b-cdn.net/33ecf3c9-8edc-4630-8fc1-0097f15805a3/thumbnail.jpg" autoPlay muted loop playsInline>
-                      <source src="https://vz-c5b883c0-a50.b-cdn.net/33ecf3c9-8edc-4630-8fc1-0097f15805a3/playlist.m3u8" type="application/x-mpegURL" />
-                      <source src="https://vz-c5b883c0-a50.b-cdn.net/33ecf3c9-8edc-4630-8fc1-0097f15805a3/play_720p.mp4" type="video/mp4" />
+                    {/* TODO: Add video here when ready 
+                        Replace the commented video element below with actual video sources
+                        Example sources are commented out below for reference
+                    */}
+                    {/* <video className="absolute top-0 left-0 w-full h-full rounded-3xl object-cover" controls preload="metadata" poster="YOUR_THUMBNAIL_URL" autoPlay muted loop playsInline>
+                      <source src="YOUR_VIDEO_URL.m3u8" type="application/x-mpegURL" />
+                      <source src="YOUR_VIDEO_URL.mp4" type="video/mp4" />
                       Your browser does not support the video tag.
-                    </video>
+                    </video> */}
+                    
+                    {/* Placeholder - Remove this div when video is added */}
+                    <div className="absolute top-0 left-0 w-full h-full bg-oplera-navy/90 flex items-center justify-center">
+                      <div className="text-center px-4">
+                        <div className="text-8xl mb-4 animate-pulse">▶️</div>
+                        <p className="text-xl text-gray-300">Demo Video Coming Soon</p>
+                        <p className="text-sm text-gray-500 mt-2">Video will be added here</p>
+                      </div>
+                    </div>
                   </div>
                 </div>
 
@@ -141,7 +154,7 @@ export default function OmniSupportPage() {
             </div>
           </motion.div>
         </div>
-      </section> */}
+      </section>
 
       {/* Features & Capabilities */}
       <section className="py-20 px-4">
