@@ -76,8 +76,11 @@
           "Basic prompt and persona tuning",
           "30-minute onboarding session"
         ],
-        "ctaLabel": "Request Basic Setup",
-        "ctaHref": "/demo",
+        "cta": {
+          "type": "link",
+          "href": "/demo",
+          "label": "Request Basic Setup"
+        },
         "popular": false,
         "isEnterprise": false
       },
@@ -91,8 +94,11 @@
           "Custom training and analytics dashboard",
           "Priority support & dedicated account manager"
         ],
-        "ctaLabel": "Request Custom Quote",
-        "ctaHref": "mailto:hello@oplera.ai",
+        "cta": {
+          "type": "mail",
+          "href": "mailto:hello@oplera.ai",
+          "label": "Request Custom Quote"
+        },
         "popular": true,
         "isEnterprise": true
       }
@@ -112,4 +118,3 @@
     }
   }
 }
-

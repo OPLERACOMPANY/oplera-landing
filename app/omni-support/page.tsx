@@ -182,51 +182,25 @@ export default function OmniSupportPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            {plans.map((plan, index) => (
-              <motion.div
-                key={plan.title ?? index}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className={`group bg-oplera-navy/30 backdrop-blur-sm rounded-2xl p-8 border ${
-                  plan.popular ? 'border-oplera-cyan/40 hover:border-oplera-cyan' : 'border-oplera-cyan/20 hover:border-oplera-cyan/60'
-                } hover:shadow-xl hover:shadow-oplera-cyan/10 transition-all duration-300 relative overflow-hidden`}
-              >
-                {plan.popular && (
-                  <div className="absolute top-4 right-4">
-                    <span className="px-3 py-1 bg-oplera-cyan/20 text-oplera-cyan text-xs font-bold rounded-full border border-oplera-cyan/50 shadow-lg shadow-oplera-cyan/20">POPULAR</span>
-                  </div>
-                )}
+          {plans.map((plan, index) => {
+  const cta = plan.cta || { type: 'link', href: '#', label: 'Learn More' }
 
-                <div className="relative z-10">
-                  <div className="mb-6">
-                    <h3 className="text-2xl font-bold font-poppins mb-2 text-white">{plan.title}</h3>
-                    <div className="text-3xl font-bold text-oplera-cyan mb-2">{plan.price}</div>
-                    <p className="text-sm text-gray-400">{plan.subtitle}</p>
-                  </div>
+  return (
+    <motion.div key={index}>
+      {/* باقي التفاصيل */}
+      {cta.type === 'link' ? (
+        <Link href={cta.href} className="block w-full ...">
+          {cta.label}
+        </Link>
+      ) : (
+        <a href={cta.href} className="block w-full ...">
+          {cta.label}
+        </a>
+      )}
+    </motion.div>
+  )
+})}
 
-                  <ul className="space-y-3 mb-8">
-                    {plan.features.map((f, i) => (
-                      <li key={`${plan.title}-f${i}`} className="flex items-start">
-                        <span className="text-oplera-cyan mr-3 text-lg mt-0.5">✓</span>
-                        <span className="text-gray-300">{f}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {plan.cta.type === 'link' ? (
-                    <Link href={plan.cta.href} className="block w-full px-6 py-4 bg-oplera-cyan text-oplera-navy rounded-lg font-semibold text-center hover:scale-105 hover:shadow-lg hover:shadow-oplera-cyan/30 transition-all">
-                      {plan.cta.label}
-                    </Link>
-                  ) : (
-                    <a href={plan.cta.href} className="block w-full px-6 py-4 border-2 border-oplera-cyan text-oplera-cyan rounded-lg font-semibold text-center hover:bg-oplera-cyan hover:text-oplera-navy hover:scale-105 hover:shadow-lg hover:shadow-oplera-cyan/30 transition-all">
-                      {plan.cta.label}
-                    </a>
-                  )}
-                </div>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
