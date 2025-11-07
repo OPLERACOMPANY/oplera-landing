@@ -18,6 +18,7 @@ interface Plan {
   features: string[]
   cta: CTA
   popular?: boolean
+  isEnterprise?: boolean
 }
 
 interface Feature {
@@ -30,16 +31,16 @@ interface Feature {
 interface OmniSupportData {
   hero: unknown
   video: unknown
-  features?: { items?: Feature[] } // JSONك غالباً عامل features ككائن فيه items
-  implementation: { options: Plan[] } // مصفوفة الخطط تحت implementation.options
+  features?: { items?: Feature[] }
+  implementation: { options: Plan[] }
   finalCTA: unknown
 }
 
-// ✅ استيراد JSON (تأكد من تفعيل resolveJsonModule في tsconfig)
+// ✅ استيراد JSON
 import rawData from '@/data/products/omni-support.json'
 const data = rawData as unknown as OmniSupportData
 
-// Fallback للميزات إذا ما كانت موجودة داخل JSON
+// Fallback للميزات
 const defaultFeatures: Feature[] = [
   { icon: '💬', title: 'Multimodal Understanding', description: 'Understands both text and images.', benefit: 'Handle customer photos, screenshots, and messages seamlessly.' },
   { icon: '⚙️', title: 'Seamless Integrations', description: 'Connects to Telegram, WhatsApp, and web instantly.', benefit: 'Deploy across all your channels without complex setup.' },
@@ -48,7 +49,6 @@ const defaultFeatures: Feature[] = [
 ]
 
 export default function OmniSupportPage() {
-  // نستخدم ميزات JSON إن وجدت، وإلا منرجع للفولباك
   const featureItems: Feature[] = (data.features?.items as Feature[] | undefined) ?? defaultFeatures
   const plans: Plan[] = data.implementation.options ?? []
 
@@ -170,7 +170,7 @@ export default function OmniSupportPage() {
         </div>
       </section>
 
-      {/* Implementation Options (from JSON) */}
+      {/* Implementation Options */}
       <section className="py-20 px-4 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-oplera-cyan/5 to-transparent pointer-events-none" />
         <div className="max-w-6xl mx-auto relative">
@@ -182,25 +182,77 @@ export default function OmniSupportPage() {
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8">
-          {plans.map((plan, index) => {
-  const cta = plan.cta || { type: 'link', href: '#', label: 'Learn More' }
+            {plans.map((plan, index) => {
+              const cta = plan.cta || { type: 'link', href: '#', label: 'Learn More' }
 
-  return (
-    <motion.div key={index}>
-      {/* باقي التفاصيل */}
-      {cta.type === 'link' ? (
-        <Link href={cta.href} className="block w-full ...">
-          {cta.label}
-        </Link>
-      ) : (
-        <a href={cta.href} className="block w-full ...">
-          {cta.label}
-        </a>
-      )}
-    </motion.div>
-  )
-})}
+              return (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className={`group bg-oplera-navy/30 backdrop-blur-sm rounded-2xl p-8 border transition-all duration-300 relative overflow-hidden ${
+                    plan.popular
+                      ? 'border-oplera-cyan/40 hover:border-oplera-cyan hover:shadow-2xl hover:shadow-oplera-cyan/20'
+                      : 'border-oplera-cyan/20 hover:border-oplera-cyan/60 hover:shadow-xl hover:shadow-oplera-cyan/10'
+                  }`}
+                >
+                  {plan.popular && (
+                    <div className="absolute top-4 right-4">
+                      <span className="px-3 py-1 bg-oplera-cyan/20 text-oplera-cyan text-xs font-bold rounded-full border border-oplera-cyan/50 shadow-lg shadow-oplera-cyan/20">
+                        POPULAR
+                      </span>
+                    </div>
+                  )}
 
+                  <div
+                    className={`absolute inset-0 bg-gradient-to-br transition-opacity duration-300 ${
+                      plan.popular
+                        ? 'from-oplera-cyan/10 to-oplera-violet/5 opacity-0 group-hover:opacity-100'
+                        : 'from-oplera-cyan/5 to-transparent opacity-0 group-hover:opacity-100'
+                    }`}
+                  />
+
+                  <div className="relative z-10">
+                    <div className="mb-6">
+                      <h3 className="text-2xl font-bold font-poppins mb-2 text-white">
+                        {plan.title}
+                      </h3>
+                      <div className="text-3xl font-bold text-oplera-cyan mb-2">{plan.price}</div>
+                      {plan.subtitle && (
+                        <p className="text-sm text-gray-400">{plan.subtitle}</p>
+                      )}
+                    </div>
+
+                    <ul className="space-y-3 mb-8">
+                      {plan.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start">
+                          <span className="text-oplera-cyan mr-3 text-lg mt-0.5">✓</span>
+                          <span className="text-gray-300">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {cta.type === 'link' ? (
+                      <Link
+                        href={cta.href}
+                        className="block w-full px-6 py-4 bg-oplera-cyan text-oplera-navy rounded-lg font-semibold text-center hover:scale-105 hover:shadow-lg hover:shadow-oplera-cyan/30 transition-all"
+                      >
+                        {cta.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={cta.href}
+                        className="block w-full px-6 py-4 border-2 border-oplera-cyan text-oplera-cyan rounded-lg font-semibold text-center hover:bg-oplera-cyan hover:text-oplera-navy hover:scale-105 hover:shadow-lg hover:shadow-oplera-cyan/30 transition-all"
+                      >
+                        {cta.label}
+                      </a>
+                    )}
+                  </div>
+                </motion.div>
+              )
+            })}
           </div>
         </div>
       </section>
